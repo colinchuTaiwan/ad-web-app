@@ -32,8 +32,8 @@ def set_full_page_background(image_file):
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 70%;
+            height: 70%;
             background-color: rgba(0, 0, 0, 0.3); /* 0.3 是透明度，可依需求調整 */
             z-index: -1;
         }}
