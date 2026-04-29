@@ -3,7 +3,7 @@ import base64
 import os
 
 # 設置網頁標題
-st.set_page_config(page_title="我的靜態封面網頁", layout="wide")
+#st.set_page_config(page_title="我的靜態封面網頁", layout="wide")
 
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
@@ -53,6 +53,6 @@ def set_full_page_background(image_file):
 set_full_page_background('messageImage_1777436648216.jpg')
 
 # 網頁內容
-st.title("歡迎來到我的 Streamlit 頁面")
-st.subheader("這張背景圖是直接讀取本地檔案生成的")
-st.write("目前不需要透過上傳按鈕，只要專案夾內有圖片即可顯示。")
+#st.title("歡迎來到我的 Streamlit 頁面")
+#st.subheader("這張背景圖是直接讀取本地檔案生成的")
+#st.write("目前不需要透過上傳按鈕，只要專案夾內有圖片即可顯示。")
