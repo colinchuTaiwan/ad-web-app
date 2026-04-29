@@ -18,7 +18,7 @@ def set_professional_hero(image_file):
         /* 封面容器：使用 60vh 代表佔據螢幕高度的 60% */
         .hero-section {{
             width: 100%;
-            height: 90vh; 
+            height: 100vh; 
             min-height: 400px;
             background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
                         url("data:image/jpg;base64,{bin_str}");
