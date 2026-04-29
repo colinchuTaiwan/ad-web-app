@@ -187,6 +187,9 @@ st.markdown(f"""
 # =========================
 col1, col2 = st.columns([2, 1])
 
+# =========================
+# 左側：課程內容
+# =========================
 with col1:
     for day_title, items in course["days"]:
         st.markdown(f"""
@@ -199,26 +202,23 @@ with col1:
         for item in items:
             st.info(item)
 
+# =========================
+# 右側：培訓目標卡片
+# =========================
 with col2:
-    st.markdown("""
-<div class="course-card">
-    <h4>✦ 培訓目標</h4>
-    <ul>
-        {"".join([f"<li>{o}</li>" for o in course["outcomes"]])}
-    </ul>
-</div>
-    """)
-
-    for o in course["outcomes"]:
-        st.markdown(f"<li>{o}</li>", unsafe_allow_html=True)
-
-    st.markdown("""
+    st.markdown(f"""
+    <div class="course-card">
+        <h4>✦ 培訓目標</h4>
+        <ul>
+            {"".join([f"<li>{o}</li>" for o in course["outcomes"]])}
         </ul>
+
         <hr>
         <small>證照銜接：iPAS AI 應用規劃師</small>
     </div>
     """, unsafe_allow_html=True)
 
+    # 按鈕
     if st.button("立即報名", use_container_width=True):
         st.success("報名成功（示範功能）")
         st.balloons()
