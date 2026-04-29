@@ -201,9 +201,12 @@ with col1:
 
 with col2:
     st.markdown("""
-    <div class="course-card">
-        <h4>✦ 培訓目標</h4>
-        <ul>
+<div class="course-card">
+    <h4>✦ 培訓目標</h4>
+    <ul>
+        {"".join([f"<li>{o}</li>" for o in course["outcomes"]])}
+    </ul>
+</div>
     """)
 
     for o in course["outcomes"]:
