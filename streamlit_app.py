@@ -151,7 +151,7 @@ function Pill({ children, color, filled = false }) {
       className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-medium ${filled ? "text-white" : ""}`}
       style={
         filled
-          ? { background: `linear-gradient(135deg, ${color.dark}, ${color.mid})` }
+          ? { background: linear-gradient(135deg, ${color.dark}, ${color.mid}) }
           : { background: color.light, border: `1.5px solid ${color.mid}`, color: color.dark }
       }
     >
@@ -164,7 +164,7 @@ function ScheduleCard({ day, color }) {
   return (
     <Card className="overflow-hidden rounded-2xl border-[#ede9f2] bg-white shadow-[0_2px_16px_rgba(60,40,80,.07),0_8px_40px_rgba(60,40,80,.05)]">
       <div className="flex items-center gap-3 bg-gradient-to-r from-white to-[#f7f5f9] px-5 py-4">
-        <span className="rounded-full px-4 py-1 text-xs font-bold text-white" style={{ background: `linear-gradient(135deg, ${color.dark}, ${color.mid})` }}>
+        <span className="rounded-full px-4 py-1 text-xs font-bold text-white" style={{ background: linear-gradient(135deg, ${color.dark}, ${color.mid}) }}>
           {day.label}
         </span>
         <span className="text-sm font-bold text-[#2c2830]">{day.name}</span>
@@ -180,7 +180,7 @@ function ScheduleCard({ day, color }) {
               </div>
               <div>
                 {tag && (
-                  <span className="mb-2 inline-flex rounded-full px-2.5 py-1 font-mono text-[9px] uppercase tracking-widest" style={{ background: color.light, color: color.dark, border: `1px solid ${color.mid}` }}>
+                  <span className="mb-2 inline-flex rounded-full px-2.5 py-1 font-mono text-[9px] uppercase tracking-widest" style={{ background: color.light, color: color.dark, border: 1px solid ${color.mid} }}>
                     {tag}
                   </span>
                 )}
