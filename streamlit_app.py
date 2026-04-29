@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 
 # 1. 設置網頁標題
-st.set_page_config(page_title="自定義封面網頁", layout="wide")
+#st.set_page_config(page_title="自定義封面網頁", layout="wide")
 
 st.title("🖼️ 網頁封面設置工具")
 
@@ -27,5 +27,5 @@ else:
 
 # 4. 網頁其餘內容
 st.divider()
-st.header("歡迎來到我的網站")
-st.write("這是一個展示如何動態更換封面的簡單範例。")
+#st.header("歡迎來到我的網站")
+#st.write("這是一個展示如何動態更換封面的簡單範例。")
