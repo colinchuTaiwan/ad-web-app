@@ -4,7 +4,7 @@ from PIL import Image
 # 1. 設置網頁標題
 #st.set_page_config(page_title="自定義封面網頁", layout="wide")
 
-st.title("🖼️ 網頁封面設置工具")
+#st.title("🖼️ 網頁封面設置工具")
 
 # 2. 側邊欄上傳圖片
 st.sidebar.header("上傳區域")
