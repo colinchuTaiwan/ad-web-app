@@ -151,7 +151,7 @@ function Pill({ children, color, filled = false }) {
       className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-medium ${filled ? "text-white" : ""}`}
       style={
         filled
-          ? { background: `linear-gradient(135deg, ${color.dark}, ${color.mid})` }
+          ? background_style = f"background: linear-gradient(135deg, {p['dark']}, {p['mid']});"
           : { background: color.light, border: `1.5px solid ${color.mid}`, color: color.dark }
       }
     >
