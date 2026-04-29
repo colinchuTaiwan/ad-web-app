@@ -206,19 +206,21 @@ with col1:
 # 右側：培訓目標卡片
 # =========================
 with col2:
+
     st.markdown(f"""
     <div class="course-card">
         <h4>✦ 培訓目標</h4>
-        <ul>
-            {"".join([f"<li>{o}</li>" for o in course["outcomes"]])}
-        </ul>
-
-        <hr>
-        <small>證照銜接：iPAS AI 應用規劃師</small>
     </div>
     """, unsafe_allow_html=True)
 
-    # 按鈕
+    for o in course["outcomes"]:
+        st.markdown(f"• {o}")
+
+    st.markdown("""
+    <hr>
+    <small>證照銜接：iPAS AI 應用規劃師</small>
+    """, unsafe_allow_html=True)
+
     if st.button("立即報名", use_container_width=True):
         st.success("報名成功（示範功能）")
         st.balloons()
