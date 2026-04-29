@@ -2,61 +2,67 @@ import streamlit as st
 import base64
 import os
 
-st.set_page_config(page_title="精簡封面網頁", layout="wide")
+st.set_page_config(page_title="大氣封面網頁", layout="wide")
 
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
-def set_hero_banner(image_file):
+def set_professional_hero(image_file):
     if os.path.exists(image_file):
         bin_str = get_base64_of_bin_file(image_file)
         
-        # 這裡調整高度 (height) 和邊距 (margin)
-        banner_html = f'''
+        hero_html = f'''
         <style>
-        .hero-container {{
+        /* 封面容器：使用 60vh 代表佔據螢幕高度的 60% */
+        .hero-section {{
             width: 100%;
-            height: 350px; /* 控制封面高度，你可以改為 250px 或 400px */
-            overflow: hidden;
+            height: 60vh; 
+            min-height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                        url("data:image/jpg;base64,{bin_str}");
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 15px; /* 圓角看起來更現代 */
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: white;
+            flex-direction: column;
+            border-radius: 20px;
+            margin-bottom: 50px;
         }}
-        
-        .hero-img {{
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 關鍵：裁切圖片以填滿區域，不拉伸變形 */
-            object-position: center; /* 圖片對齊中心 */
-        }}
-        
-        /* 移除 Streamlit 預設的上邊距，讓封面更靠上 */
+
+        /* 隱藏 Streamlit 預設的多餘間距 */
         .block-container {{
-            padding-top: 2rem !important;
+            padding-top: 1rem !important;
+            padding-bottom: 0rem !important;
+        }}
+
+        /* 封面文字特效 */
+        .hero-text {{
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
         }}
         </style>
         
-        <div class="hero-container">
-            <img class="hero-img" src="data:image/jpg;base64,{bin_str}">
+        <div class="hero-section">
+            <h1 class="hero-text">WELCOME</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">探索資料的視覺之美</p>
         </div>
         '''
-        st.markdown(banner_html, unsafe_allow_html=True)
+        st.markdown(hero_html, unsafe_allow_html=True)
     else:
-        st.error("找不到圖片檔案")
+        st.error(f"檔案 {image_file} 不存在")
 
-# 1. 放置封面 (高度較小，不會塞滿整個螢幕)
-set_hero_banner('messageImage_1777436648216.jpg')
+# 執行封面
+set_professional_hero('messageImage_1777436648216.jpg')
 
-# 2. 放置標題與內容
-st.title("專案標題")
-st.write("現在封面高度被限制在 350px，看起來會精緻許多，不會有壓迫感。")
-
-# 3. 測試一些內容讓頁面可以捲動
-st.divider()
-for i in range(5):
-    st.write(f"這是內容區塊 {i+1}，你可以在這裡放置你的數據或圖表。")
+# 下方內容
+st.header("📊 數據概覽")
+col1, col2, col3 = st.columns(3)
+col1.metric("造訪人數", "1,200", "+5%")
+col2.metric("活躍用戶", "450", "-2%")
+col3.metric("完成率", "88%", "+10%")
