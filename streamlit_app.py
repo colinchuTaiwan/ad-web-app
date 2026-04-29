@@ -1,31 +1,58 @@
 import streamlit as st
-from PIL import Image
+import base64
+import os
 
-# 1. 設置網頁標題
-#st.set_page_config(page_title="自定義封面網頁", layout="wide")
+# 設置網頁標題
+st.set_page_config(page_title="我的靜態封面網頁", layout="wide")
 
-#st.title("🖼️ 網頁封面設置工具")
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
 
-# 2. 側邊欄上傳圖片
-st.sidebar.header("上傳區域")
-uploaded_file = st.sidebar.file_uploader("選擇一張圖片作為封面", type=["jpg", "jpeg", "png"])
+def set_full_page_background(image_file):
+    """
+    將圖片設置為全螢幕背景
+    """
+    if os.path.exists(image_file):
+        bin_str = get_base64_of_bin_file(image_file)
+        page_bg_img = f'''
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpg;base64,{bin_str}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }}
+        
+        /* 添加一個深色遮罩 (Scrim)，確保白色文字清晰可見 */
+        .stApp::before {{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* 0.3 是透明度，可依需求調整 */
+            z-index: -1;
+        }}
 
-# 3. 封面邏輯
-if uploaded_file is not None:
-    # 讀取圖片
-    image = Image.open(uploaded_file)
-    
-    # 顯示封面 (use_container_width 會讓圖片填滿容器寬度)
-    st.image(image, caption="目前網頁封面", use_container_width=True)
-    
-    st.success("封面更換成功！")
-else:
-    # 若未上傳，顯示預設提示或預設圖片
-    st.info("請從左側上傳圖片來生成封面。")
-    # 你也可以放一張預設圖
-    # st.image("https://via.placeholder.com/1200x400", use_container_width=True)
+        /* 調整標題顏色為白色以符合封面感 */
+        h1, h2, h3, p {{
+            color: white !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }}
+        </style>
+        '''
+        st.markdown(page_bg_img, unsafe_allow_html=True)
+    else:
+        st.error(f"找不到圖片檔案: {image_file}，請確認檔案已上傳至 GitHub。")
 
-# 4. 網頁其餘內容
-st.divider()
-#st.header("歡迎來到我的網站")
-#st.write("這是一個展示如何動態更換封面的簡單範例。")
+# 執行背景設置 (請確認檔名完全一致)
+set_full_page_background('messageImage_1777436648216.jpg')
+
+# 網頁內容
+st.title("歡迎來到我的 Streamlit 頁面")
+st.subheader("這張背景圖是直接讀取本地檔案生成的")
+st.write("目前不需要透過上傳按鈕，只要專案夾內有圖片即可顯示。")
